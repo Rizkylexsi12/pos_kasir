@@ -21,19 +21,19 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="/data_customer" class="nav-link">
+      <a class="nav-link customer">
         <i class="nav-icon far fa-smile-beam"></i>
         <p>Data Customer</p>
       </a>
     </li>
     <li class="nav-item">
-      <a href="/poin" class="nav-link">
+      <a href="/redeem_poin" class="nav-link">
         <i class="nav-icon fas fa-gift"></i>
         <p>Redeem Poin</p>
       </a>
     </li>
     <li class="nav-item">
-      <a href="/poin" class="nav-link">
+      <a href="/riwayat_redeem_poin" class="nav-link">
         <i class="nav-icon fas fa-gift"></i>
         <p>Riwayat Redeem</p>
       </a>
@@ -46,3 +46,18 @@
     </li>
   </ul>
 </nav>
+
+<script>
+  var customerElement = document.querySelector('.customer');
+
+  customerElement.addEventListener('click', function() {
+    var namaAnda = prompt('Masukkan password:');
+  
+    if (namaAnda === 'lexsi') {
+      window.location.href = '/data_customer';
+    } else {
+      alert("Anda tidak memiliki akses");
+      window.location.href = '/';
+    }
+  });
+</script>

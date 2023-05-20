@@ -1,7 +1,7 @@
 @extends('0_Layout.layout')
 
 @section('judul')
-    | Input Penjualan
+    | Redeem Poin
 @endsection
 
 @section('nama_menu')
@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-0 mt-0">
                 <div class="col-sm-15 row mb-0 mt-0">
-                    <h3 class="row mb-0 mt-0">Input Penjualan</h3>
+                    <h3 class="row mb-0 mt-0">Redeem Poin</h3>
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@
         <table class="table table-bordered table-striped table-sm table-hover col-3">
             <thead>
                 <tr>
-                    <th class="text-center">Kode Barang</th>
+                    <th class="text-center">Kode Barang Hadiah</th>
                 </tr>
             </thead>
             <tbody>
@@ -61,27 +61,27 @@
 
         @if(session('cart'))
             <section class="content-header border">
-                <h2>List Pembelian</h2>
+                <h2>List Redeem Poin</h2>
                 <div class="row">
                     <table class="table table-bordered table-striped table-sm table-hover col-md-10">
                         <thead>
                             <tr>
-                                <th class="text-center">Nama Barang</th>
+                                <th class="text-center">Nama Barang Hadiah</th>
                                 <th class="text-center">Qty</th>
-                                <th class="text-center">Harga</th>
+                                <th class="text-center">Poin</th>
                                 <th class="text-center">Total</th>
                                 <th class="text-center" width="300">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach(session('cart') as $id => $details)
-                            <?php $Grandtotal += $details['harga_barang'] * $details['quantity'] ?>
-                            <?php $total = $details['harga_barang'] * $details['quantity'] ?>
+                            @foreach(session('cart_hadiah') as $id => $details)
+                            <?php $Grandtotal += $details['poin'] * $details['quantity'] ?>
+                            <?php $total = $details['poin'] * $details['quantity'] ?>
                             <?php $totalqty += $details['quantity'] ?>
                                 <tr>
                                     <td>{{ $details['nama_barang'] }}</td>
                                     <td width="150" class="text-center"><input type="number" class="col-6 quantity" value="{{ $details['quantity'] }}" name="quantity[{{ $id }}]"></td>
-                                    <td width="150" class="text-center">Rp {{ number_format($details['harga_barang']) }}</td>
+                                    <td width="150" class="text-center">Rp {{ number_format($details['poin']) }}</td>
                                     <td width="150" class="text-center"><input type="text" class="col-12" value="Rp {{ number_format($total) }}" readonly></td>
                                     <td class="text-center actions" width="100">
                                         <button data-id="{{ $id }}" class="update-cart"><i class="fas fa-sync"></i></button>
@@ -135,7 +135,7 @@
 
             if(confirm("Apakah anda yakin?")){
                 $.ajax({
-                    url: '{{ url('remove-from-cart') }}',
+                    url: '{{ url('remove-from-cart-hadiah') }}',
                     method: "DELETE",
                     data: {_token: '{{ csrf_token() }}', id: _this.attr("data-id")},
                     success: function (response) {
@@ -151,7 +151,7 @@
                 e.preventDefault();
 
                 var barcode = $(this).val();
-                var url = "{{ url('/add-to-cart/') }}" + "/" + barcode;
+                var url = "{{ url('/add-to-redeem/') }}" + "/" + barcode;
                 var _this = $(this);
                 
                 $.ajax({

@@ -1,7 +1,7 @@
 @extends('0_Layout.layout')
 
 @section('judul')
-    | Edit Stok Barang
+    | Edit Stok Hadiah
 @endsection
 
 @section('nama_menu')
@@ -9,7 +9,7 @@
     <div class="container-fluid">
     <div class="row mb-0 mt-0">
         <div class="col-sm-15 row mb-0 mt-0">
-            <h3 class="row mb-0 mt-0">Edit Stok Barang</h3>
+            <h3 class="row mb-0 mt-0">Edit Stok Hadiah</h3>
         </div>
     </div>
     </div>
@@ -17,7 +17,7 @@
 @endsection
 
 @section('content')
-<form action="/stok_barang/update/{{ $stok-> id }}" method="post" enctype="multipart/form-data">
+<form action="/stok_hadiah/update/{{ $stokHadiah->id }}" method="post" enctype="multipart/form-data">
     @csrf
 
     <div class="content">
@@ -25,7 +25,7 @@
             <div class="col-6">
                 <div class="form-group">
                     <label>Barcode</label>
-                    <input type="number" name="barcode" class="form-control" value="{{ $stok-> barcode }}">
+                    <input type="number" name="barcode" class="form-control" value="{{ $stokHadiah-> barcode }}">
                     <div class="text-danger">
                         @error('barcode')
                             {{  $message }}
@@ -34,7 +34,7 @@
                 </div>
                 <div class="form-group">
                     <label>Nama Barang</label>
-                    <input type="text" name="nama_barang" class="form-control" value="{{ $stok-> nama_barang }}">
+                    <input type="text" name="nama_barang" class="form-control" value="{{ $stokHadiah-> nama_barang }}">
                     <div class="text-danger">
                         @error('nama_barang')
                             {{  $message }}
@@ -42,26 +42,17 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Harga Beli</label>
-                    <input type="number" name="harga_beli" class="form-control" value="{{ $stok->harga_beli }}">
+                    <label>Poin</label>
+                    <input type="number" name="poin" class="form-control" value="{{ $stokHadiah-> poin }}">
                     <div class="text-danger">
-                        @error('harga_beli')
-                            {{  $message }}
-                        @enderror
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Harga Jual</label>
-                    <input type="number" name="harga_barang" class="form-control" value="{{ $stok-> harga_barang }}">
-                    <div class="text-danger">
-                        @error('harga_barang')
+                        @error('poin')
                             {{  $message }}
                         @enderror
                     </div>
                 </div>
                 <div class="form-group">
                     <label>QTY</label>
-                    <input type="number" name="qty" class="form-control" value="{{ $stok-> qty }}">
+                    <input type="number" name="qty" class="form-control" value="{{ $stokHadiah-> qty }}">
                     <div class="text-danger">
                         @error('qty')
                             {{  $message }}
@@ -70,7 +61,7 @@
                 </div>
                 <div class="form-group">
                     <button class="btn btn-success btn-sm">Simpan</button>
-                    <a href="/stok_barang" class="btn btn-danger btn-sm">Cancel</a>
+                    <a href="/stok_hadiah" class="btn btn-danger btn-sm">Cancel</a>
                 </div> 
             </div>
         </div>

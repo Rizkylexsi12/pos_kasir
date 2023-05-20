@@ -116,51 +116,6 @@ class stokBarangController extends Controller
         return redirect()->route('stok_barang')->with('pesan', 'Data berhasil dihapus');
     }
 
-    public function addToCarts($barcode){
-        $product = stok::where('barcode', $barcode)->first();
-         
-        if(!$product) {
-            abort(404);
-        }
-
-        $cekstok = $product->qty;
-    
-        $cart = session()->get('cart');
-
-        if($cekstok <= 0){
-            return session()->flash('error', 'Stok '. $product->nama_barang. ' tidak cukup'); 
-        }else{
-            // if cart is empty then this the first product
-            if(!$cart) {
-                $cart = [
-                    $barcode => [
-                        "nama_barang" => $product->nama_barang,
-                        "quantity" => 1,
-                        "harga_barang" => $product->harga_barang
-                        ]
-                    ];
-
-                return session()->put('cart', $cart);  
-            }
-    
-            // if cart not empty then check if this product exist then increment quantity
-            if(isset($cart[$barcode])) {
-                $cart[$barcode]['quantity']++;
-            
-                return session()->put('cart', $cart);
-            }
-    
-            // if item not exist in cart then add to cart with quantity = 1
-            $cart[$barcode] = [
-                "nama_barang" => $product->nama_barang,        
-                "quantity" => 1,        
-                "harga_barang" => $product->harga_barang 
-            ];
-    
-            return session()->put('cart', $cart);
-        }
-    }
-
     public function addToCart($barcode){
         $product = stok::where('barcode', $barcode)->first();
     
@@ -216,7 +171,6 @@ class stokBarangController extends Controller
         return session()->put('cart', $cart);
     }
     
-
     public function remove(Request $request){
         if($request->id) {
             $cart = session()->get('cart');
@@ -291,8 +245,10 @@ class stokBarangController extends Controller
                 $stok_barang->save();
             }
 
+            $totalPoin = $customer->poin;
+
             session()->forget('cart');
-            return redirect()-> route('input_penjualan')-> with('pesan', 'Uang Kembali : Rp' . number_format($uang_bayar - $grandtotal));
+            return redirect()-> route('input_penjualan')-> with('pesan', 'Uang Kembali : Rp' . number_format($uang_bayar - $grandtotal) . ' dan total poin : ' . $totalPoin);
         }
     }
 

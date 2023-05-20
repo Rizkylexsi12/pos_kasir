@@ -40,7 +40,7 @@
         <span class="brand-text font-weight-light">Toko Susu</span>
       </a>
       <div class="sidebar">
-        @include('Layout.navbar')
+        @include('0_Layout.navbar')
       </div>
     </aside>
     <div class="content-wrapper">

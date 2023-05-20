@@ -16,9 +16,9 @@ class stok extends Model
     }
 
     public function deleteData($id){
-        DB::table('stoks')
-        -> where('id', $id)
-        -> delete();
+        return DB::table('stoks')
+                -> where('id', $id)
+                -> delete();
     }
 
     public function detailData($id){

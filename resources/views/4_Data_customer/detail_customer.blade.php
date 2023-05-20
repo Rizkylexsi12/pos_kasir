@@ -1,4 +1,4 @@
-@extends('Layout.layout')
+@extends('0_Layout.layout')
 
 @section('judul')
     | Detail Customer
@@ -40,6 +40,8 @@
         </tr>
         <tr>
             <th><a href="/data_customer" class="btn btn-success btn-sm">Kembali</a></th>
+            <th></th>
+            <th></th>
         </tr>
         
     </table>

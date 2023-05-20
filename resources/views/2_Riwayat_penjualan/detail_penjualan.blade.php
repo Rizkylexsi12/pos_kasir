@@ -1,4 +1,4 @@
-@extends('Layout.layout')
+@extends('0_Layout.layout')
 
 @section('judul')
     | Riwayat Penjualan

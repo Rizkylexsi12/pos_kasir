@@ -1,4 +1,4 @@
-@extends('Layout.layout')
+@extends('0_Layout.layout')
 
 @section('judul')
     | Stok Barang
@@ -53,12 +53,11 @@
             <tr>
                 <td class="text-center" width="60">{{ ++$no + ($stok->currentPage()-1) * $stok->perPage() }}</td>
                 <td class="text-center" width="150">{{ $data->barcode }}</td>
-                <td><a href="/stok_barang/detail/{{ $data-> id }}"> {{ $data->nama_barang }} </a></td>
+                <td><a href="/stok_barang/detail/{{ $data-> id }}">{{ $data->nama_barang }}</a></td>
                 <td class="text-center" width="150">Rp{{ number_format($data->harga_beli) }}</td>
                 <td class="text-center" width="150"> Rp{{ number_format($data->harga_barang) }}</a></td>
                 <td class="text-center" width="60">{{ $data->qty }}</td>
                 <td class="text-center" width="150">
-                    {{-- <a href="/add-to-cart/{{ $data->id }}" class="btn btn-sm btn-success">+</a> --}}
                     <a href="/stok_barang/edit/{{ $data->id }}" class="btn btn-sm btn-primary">Edit</a>
                     <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete{{ $data->id }}">
                         Delete
@@ -90,6 +89,6 @@
           </div>
         </div>
       </div>
-      @endforeach
-      @endif
+    @endforeach
+  @endif
 @endsection
