@@ -53,13 +53,13 @@
         </table>
     </section>
 <!-- list Cart -->
-    <form action="{{ route('checkout') }}" method="POST">
+    <form action="{{ route('checkout_hadiah') }}" method="POST">
         @csrf
         <?php $Grandtotal = 0 ?> 
         <?php $total = 0 ?>
         <?php $totalqty = 0 ?>
 
-        @if(session('cart'))
+        @if(session('cart_hadiah'))
             <section class="content-header border">
                 <h2>List Redeem Poin</h2>
                 <div class="row">
@@ -81,8 +81,8 @@
                                 <tr>
                                     <td>{{ $details['nama_barang'] }}</td>
                                     <td width="150" class="text-center"><input type="number" class="col-6 quantity" value="{{ $details['quantity'] }}" name="quantity[{{ $id }}]"></td>
-                                    <td width="150" class="text-center">Rp {{ number_format($details['poin']) }}</td>
-                                    <td width="150" class="text-center"><input type="text" class="col-12" value="Rp {{ number_format($total) }}" readonly></td>
+                                    <td width="150" class="text-center">{{ number_format($details['poin']) }}</td>
+                                    <td width="150" class="text-center">{{ number_format($total) }}</td>
                                     <td class="text-center actions" width="100">
                                         <button data-id="{{ $id }}" class="update-cart"><i class="fas fa-sync"></i></button>
                                         <button data-id="{{ $id }}" class="remove-from-cart"><i class="nav-icon fas fa-trash-alt"></i></button>
@@ -92,20 +92,16 @@
                             <tr>
                                 <td>No. hp : <input type="number" class="col-9" name="nomor_hp"></td>
                                 <td class="text-center" style="font-size: 20px">Total : &nbsp;<b>{{ $totalqty }} pc(s)</b></td>
-                                <td colspan="2" class="text-center" style="font-size: 25px">Total Bayar : <b>Rp {{ number_format($Grandtotal) }}</b></td>
+                                <td colspan="2" class="text-center" style="font-size: 25px">Total Potong Poin : <b>{{ number_format($Grandtotal) }}</b></td>
                                 <td rowspan="2" class="text-danger">*Pastikan untuk selalu refresh item ketika terjadi penambahan/pengurangan qty</td>
                             </tr>
-                            <tr>
-                                <td class="text-center">Poin : <input type="text" class="col-4" name="poin"></td>
-                                <td class="text-center"></td>
-                                <td colspan="2" class="text-center">Bayar : <input type="number" class="col-6" name="bayar"></td>
-                            </tr>
+                            <tr></tr>
                         </tbody>
                     </table>
                 </div>
                 <div>
                     <div class="col-lg-3 col-sm-12 col-12 text-center checkout">
-                        <button type="submit" class="btn btn-primary btn-block">Checkout</button>
+                        <button type="submit" class="btn btn-primary btn-block">Redeem</button>
                     </div>
                 </div>
             </section>
@@ -120,7 +116,7 @@
             var _this = $(this);
 
             $.ajax({
-            url: '{{ url('update-cart') }}',
+            url: '{{ url('update-cart_hadiah') }}',
             method: "patch",
             data: {_token: '{{ csrf_token() }}', id: _this.attr("data-id"), quantity: _this.parents("tr").find(".quantity").val()},
             success: function (response) {

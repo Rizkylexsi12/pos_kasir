@@ -7,12 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class stok extends Model
 {
+    protected $table = 'stoks';
+    protected $guarded = [];
+
     public function alldata(){
-        return DB::table('stoks')->get();
+        return $this->paginate(10);
     }
 
     public function addData($data){
-        return DB::table('stoks')->insert($data);
+        return $this->insert($data);
     }
 
     public function deleteData($id){

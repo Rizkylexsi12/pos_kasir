@@ -33,7 +33,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="/riwayat_redeem_poin" class="nav-link">
+      <a href="/riwayat_redeem" class="nav-link">
         <i class="nav-icon fas fa-gift"></i>
         <p>Riwayat Redeem</p>
       </a>

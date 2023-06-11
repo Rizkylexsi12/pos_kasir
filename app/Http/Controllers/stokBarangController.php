@@ -24,7 +24,7 @@ class stokBarangController extends Controller
 
     public function index(){
         return view('3_Stok_barang/stok_barang', [
-            'stok' => DB::table('stoks')->paginate(10)
+            'stok' => $this->stok->alldata()
         ]);
     }
 
@@ -193,7 +193,6 @@ class stokBarangController extends Controller
     }
 
     public function checkout(Request $request){
-        // Ambil data penjualan dari session
         $cart = session()->get('cart', []);
 
         $nomor_hp = isset($request->nomor_hp) && !empty($request->nomor_hp) ? $request->nomor_hp : "000";

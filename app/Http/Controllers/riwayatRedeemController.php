@@ -1,57 +1,58 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\RiwayatPenjualan;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
 
-class riwayatpenjualanController extends Controller
+use Illuminate\Http\Request;
+use App\Models\riwayatRedeem;
+use Illuminate\Support\Facades\DB;
+
+class riwayatRedeemController extends Controller
 {
-    protected $riwayatpenjualan;
+    protected $riwayatRedeem;
     
     public function __construct(){
-        $this->riwayatpenjualan = new RiwayatPenjualan();
+        $this->riwayatRedeem = new riwayatRedeem();
     }
 
     public function index(){
-        return view('2_Riwayat_penjualan/riwayat_penjualan', [
-            'riwayatpenjualan' => DB::table('riwayat_penjualans')->orderByDesc('created_at')->paginate(10)
+        return view('6_Riwayat_redeem/riwayat_redeem', [
+            'riwayatRedeem' => DB::table('riwayat_redeems')->orderByDesc('created_at')->paginate(10)
         ]);
     }
 
-    public function detail($id_penjualan)
+    public function detail($id_redeem)
     {
-        $detailPenjualan = DB::table('detail_penjualans')->where('id_penjualan', $id_penjualan)->get();
-        $riwayatpenjualan = DB::table('riwayat_penjualans')->where('id', $id_penjualan)->first();
-        return view('2_Riwayat_penjualan/detail_penjualan', [
-            'detailpenjualan' => $detailPenjualan,
-            'riwayatpenjualan' => $riwayatpenjualan
+        $detailRedeem = DB::table('detail_redeems')->where('id_redeem', $id_redeem)->get();
+        $riwayatRedeem = DB::table('riwayat_redeems')->where('id', $id_redeem)->first();
+        return view('6_Riwayat_redeem/detail_riwayat_redeem', [
+            'detailRedeem' => $detailRedeem,
+            'riwayatRedeem' => $riwayatRedeem
         ]);
     }
 
     public function search(Request $request){
 	    $cari = $request->cari;
         
-	    $customer = DB::table('riwayat_penjualans')
-	    ->where('nama_pembeli','like',"%".$cari."%")
+	    $customer = DB::table('riwayat_redeems')
+	    ->where('nama_customer','like',"%".$cari."%")
         ->orWhere('nomor_telepon', 'like', "%$cari%")
         ->orderByDesc('created_at')
 	    ->paginate(10);
         
         if ($customer->isEmpty()) {
             $message = "Maaf, Customer yang anda dicari tidak ada";
-            return view('2_Riwayat_penjualan/riwayat_penjualan',[
+            return view('6_Riwayat_redeem/riwayat_redeem',[
                 'message' => $message,
                 'cari' => $cari
             ]);
         } else {
-	    return view('2_Riwayat_penjualan/riwayat_penjualan',[
-            'riwayatpenjualan' => $customer,
+	    return view('6_Riwayat_redeem/riwayat_redeem',[
+            'riwayatRedeem' => $customer,
             'cari' => $cari
         ]);
         }
     }
-    
+
     public function filterDate(Request $request){
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');
@@ -61,17 +62,17 @@ class riwayatpenjualanController extends Controller
 
         if ($startDate && $endDate) {
             // $posts->appends(['start_date' => $startDate, 'end_date' => $endDate])
-            $posts = RiwayatPenjualan::whereBetween('created_at', [$startDate, $endDate])
+            $posts = riwayatRedeem::whereBetween('created_at', [$startDate, $endDate])
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         } else {
-            $posts = RiwayatPenjualan::orderBy('created_at', 'desc')->paginate(10);
+            $posts = riwayatRedeem::orderBy('created_at', 'desc')->paginate(10);
         };
 
         $posts->appends(['start_date' => $startDate, 'end_date' => $endDate]);
         
-        return view('2_Riwayat_penjualan/riwayat_penjualan', [
-            'riwayatpenjualan' => $posts,
+        return view('6_Riwayat_redeem/riwayat_redeem', [
+            'riwayatRedeem' => $posts,
             'startDate' => $startDate,
             'endDate' => $viewEndDate
         ]);

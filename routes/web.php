@@ -5,6 +5,7 @@ use App\Http\Controllers\riwayatPenjualanController;
 use App\Http\Controllers\stokBarangController;
 use App\Http\Controllers\dataCustomerController;
 use App\Http\Controllers\redeemPoinController;
+use App\Http\Controllers\riwayatRedeemController;
 use App\Http\Controllers\stokHadiahController;
 
 Route::view('/', '1_Input_penjualan/input_penjualan') ->name('input_penjualan');
@@ -45,8 +46,11 @@ Route::controller(dataCustomerController::class)->group(function(){
 
 Route::controller(redeemPoinController::class)->group(function(){
     Route::get('/redeem_poin', [redeemPoinController::class, 'index'])->name('redeem_poin');
+    // Route::get('/redeem_poin', [redeemPoinController::class, 'home']);
     Route::get('/add-to-redeem/{barcode}', [redeemPoinController::class, 'addToCart']);
+    Route::patch('update-cart_hadiah', [redeemPoinController::class, 'update_cart']);
     Route::delete('remove-from-cart-hadiah', [redeemPoinController::class, 'remove']);
+    Route::post('/checkout_hadiah', [redeemPoinController::class, 'checkout'])->name('checkout_hadiah');
 });
 
 Route::controller(stokHadiahController::class)->group(function(){
@@ -60,10 +64,9 @@ Route::controller(stokHadiahController::class)->group(function(){
     Route::get('/stok_hadiah/cari', [stokHadiahController::class, 'search']);
 });
 
-// buat halaman Redeem poin
-// buat halaman riwayat redeem
-
-
-
-
-
+Route::controller(riwayatRedeemController::class)->group(function() {
+    Route::get('/riwayat_redeem',[riwayatRedeemController::class, 'index']);
+    Route::get('/riwayat_redeem/detail/{id_redeem}', [riwayatRedeemController::class, 'detail']);
+    Route::get('/riwayat_redeem/cari', [riwayatRedeemController::class, 'search']);
+    Route::get('/riwayat_redeem/filterdate', [riwayatRedeemController::class, 'filterDate'])->name('filterDate_redeem');
+});
