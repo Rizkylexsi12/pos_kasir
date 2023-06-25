@@ -39,7 +39,7 @@
             <th>{{ $customer-> poin }}</th>
         </tr>
         <tr>
-            <th><a href="/data_customer" class="btn btn-success btn-sm">Kembali</a></th>
+            <th><a href="/data_customer" class="btn btn-success btn-md">Kembali</a></th>
             <th></th>
             <th></th>
         </tr>

@@ -17,14 +17,14 @@
 @endsection
 
 @section('content')
-    <div class="mb-2 mt-2">
-      <a href="/data_customer/add" class="btn btn-primary btn-success"> + Add Customer </a>
-    </div>
-    <div class="row mb-2">
-      <form action="/data_customer/cari" method="GET" class="pl-2">
+    <div class="row mb-3">
+      <form action="/data_customer/cari" method="GET" class="pl-2 mt-4">
         <input type="text" name="cari" placeholder="Cari Customer / Anak Cust." value="{{ !empty($cari) ? $cari : '' }}">
-        <input type="submit" value="Search">
+        <input type="submit" value="Search" class="ml-2">
       </form>
+      <div class="ml-auto">
+        <a href="/data_customer/add" class="btn btn-primary btn-success mt-3 mr-3"> + Add Customer </a>
+      </div>
     </div>
     @if (session('pesan'))
       <div class="alert alert-success alert-dismissible">
@@ -60,18 +60,23 @@
                 <td class="text-center" width="130">
                     <a href="/data_customer/edit/{{ $data-> id }}" class="btn btn-sm btn-primary">Edit</a>
                     <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete{{ $data->id }}">
-                        Delete
+                        Hapus
                     </button>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
-    {{ $customer -> links() }}
+    <div class="row">
+      <div>
+        {{ $customer -> links() }}
+      </div>
+      <span class="ml-3">Jumlah total data : {{ $customer->total() }}</span>
+    </div>
 
     @foreach ($customer as $data)
     <div class="modal fade" id="delete{{ $data->id }}">
-        <div class="modal-dialog modal-sm">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title">Delete</h4>
@@ -80,11 +85,11 @@
               </button>
             </div>
             <div class="modal-body">
-              <p>Ingin menghapus <b> {{ $data->nama_customer }} </b>?</p>
+              <p class="text-center">Apakah anda yakin ingin menghapus <b> {{ $data->nama_customer }} </b>?</p>
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
-              <a href="/data_customer/delete/{{ $data->id }}" class="btn btn-danger">Ya</a>
+              <a href="/data_customer/delete/{{ $data->id }}" class="btn btn-danger pl-4 pr-4">Ya</a>
             </div>
           </div>
         </div>

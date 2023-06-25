@@ -80,7 +80,7 @@
                             <?php $totalqty += $details['quantity'] ?>
                                 <tr>
                                     <td>{{ $details['nama_barang'] }}</td>
-                                    <td width="150" class="text-center"><input type="number" class="col-6 quantity" value="{{ $details['quantity'] }}" name="quantity[{{ $id }}]"></td>
+                                    <td width="150" class="text-center"><input type="number" class="col-6 quantity" value="{{ $details['quantity'] }}" name="quantity[{{ $id }}]" min="1" max="{{ $details['stokbarang'] }}"></td>
                                     <td width="150" class="text-center">Rp {{ number_format($details['harga_barang']) }}</td>
                                     <td width="150" class="text-center"><input type="text" class="col-12" value="Rp {{ number_format($total) }}" readonly></td>
                                     <td class="text-center actions" width="100">

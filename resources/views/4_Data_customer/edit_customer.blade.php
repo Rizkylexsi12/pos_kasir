@@ -21,7 +21,7 @@
     @csrf
     <div class="content">
         <div  class="row">
-            <div class="col-6">
+            <div class="col-6 mt-3">
                 <div class="form-group">
                     <label>Nama Customer</label>
                     <input type="text" name="nama_customer" class="form-control" value="{{ $customer-> nama_customer }}">
@@ -59,8 +59,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-success btn-sm">Simpan</button>
-                    <a href="/data_customer" class="btn btn-danger btn-sm">Cancel</a>
+                    <button class="btn btn-success btn-md">Simpan</button>
+                    <a href="/data_customer" class="btn btn-danger btn-md ml-2">Batal</a>
                 </div> 
             </div>
         </div>

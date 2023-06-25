@@ -22,7 +22,7 @@
 
     <div class="content">
         <div  class="row">
-            <div class="col-6">
+            <div class="col-6 mt-3">
                 <div class="form-group">
                     <label>Barcode</label>
                     <input type="number" name="barcode" class="form-control" value="{{ $stokHadiah-> barcode }}">
@@ -60,8 +60,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-success btn-sm">Simpan</button>
-                    <a href="/stok_hadiah" class="btn btn-danger btn-sm">Cancel</a>
+                    <button class="btn btn-success btn-md">Simpan</button>
+                    <a href="/stok_hadiah" class="btn btn-danger btn-md ml-2">Batal</a>
                 </div> 
             </div>
         </div>

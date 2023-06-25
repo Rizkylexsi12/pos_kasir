@@ -21,19 +21,19 @@
     @if (session('pesan'))
         <div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h4><i class="icon fa fa-check"></i>{{ session('pesan') }}</h4>
+            <h4><i class="icon fa fa-check mr-2"></i>{{ session('pesan') }}</h4>
         </div>
     @endif
     @if (session('error'))
         <div class="alert alert-danger alert-dismissible">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h4><i class="fa fa-exclamation-triangle"></i>{{ session('error') }}</h4>
+            <h4><i class="fa fa-exclamation-triangle mr-2"></i>{{ session('error') }}</h4>
         </div>
     @endif
     @if (session('warning'))
         <div class="alert alert-warning alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h4><i class="fa fa-exclamation-triangle"></i>{{ session('warning') }}</h4>
+            <h4><i class="fa fa-exclamation-triangle mr-2"></i>{{ session('warning') }}</h4>
         </div>
     @endif
     <section class="content-header border">
@@ -80,7 +80,7 @@
                             <?php $totalqty += $details['quantity'] ?>
                                 <tr>
                                     <td>{{ $details['nama_barang'] }}</td>
-                                    <td width="150" class="text-center"><input type="number" class="col-6 quantity" value="{{ $details['quantity'] }}" name="quantity[{{ $id }}]"></td>
+                                    <td width="150" class="text-center"><input type="number" class="col-6 quantity" value="{{ $details['quantity'] }}" name="quantity[{{ $id }}]" min="1" max="{{ $details['stokbarang'] }}"></td>
                                     <td width="150" class="text-center">{{ number_format($details['poin']) }}</td>
                                     <td width="150" class="text-center">{{ number_format($total) }}</td>
                                     <td class="text-center actions" width="100">

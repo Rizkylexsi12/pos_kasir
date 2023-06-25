@@ -17,14 +17,14 @@
 @endsection
 
 @section('content')
-    <div class="mb-2 mt-2">
-      <a href="/stok_hadiah/add" class="btn btn-primary btn-success"> + Add Barang </a>
-    </div>
-    <div class="row mb-2">
-      <form action="/stok_hadiah/cari" method="GET" class="pl-2">
+    <div class="row mb-3">
+      <form action="/stok_hadiah/cari" method="GET" class="pl-2 mt-4">
         <input type="text" name="cari" placeholder="Cari Barang / Barcode / Poin" value="{{ !empty($cari) ? $cari : '' }}" >
-        <input type="submit" value="Search">
+        <input type="submit" value="Search" class="ml-2">
       </form>
+      <div class="ml-auto">
+        <a href="/stok_hadiah/add" class="btn btn-primary btn-success mt-3 mr-3"> + Add Barang </a>
+      </div>
     </div>
     @if (session('pesan'))
       <div class="alert alert-success alert-dismissible">
@@ -50,26 +50,31 @@
                 <?php $no=1; ?>
                 @foreach ($stokHadiah as $no => $data)
                     <tr>
-                        <td class="text-center" width="60">{{ ++$no + ($stokHadiah->currentPage()-1) *  $stokHadiah->perPage() }}</td>
+                        <td class="text-center" width="50">{{ ++$no + ($stokHadiah->currentPage()-1) *  $stokHadiah->perPage() }}</td>
                         <td class="text-center" width="150">{{ $data->barcode }}</td>
                         <td><a href="/stok_hadiah/detail/{{ $data->id }}">{{ $data->nama_barang }}</a></td>
-                        <td class="text-center" width="60">{{ $data->poin }}</td>
-                        <td class="text-center" width="60">{{ $data->qty }}</td>
-                        <td class="text-center" width="150">
+                        <td class="text-center" width="50">{{ $data->poin }}</td>
+                        <td class="text-center" width="50">{{ $data->qty }}</td>
+                        <td class="text-center" width="130">
                             <a href="/stok_hadiah/edit/{{ $data->id }}" class="btn btn-sm btn-primary">Edit</a>
                             <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete{{ $data->id }}">
-                                Delete
+                                Hapus
                             </button>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-        {{ $stokHadiah -> links() }}
+        <div class="row">
+          <div>
+            {{ $stokHadiah -> links() }}
+          </div>
+          <span class="ml-3">Jumlah total data : {{ $stokHadiah->total() }}</span>
+        </div>
 
         @foreach ($stokHadiah as $data)
             <div class="modal fade" id="delete{{ $data->id }}">
-                <div class="modal-dialog modal-sm">
+                <div class="modal-dialog modal-sm modal-dialog-centered">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h4 class="modal-title">Delete</h4>
@@ -78,11 +83,11 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      <p>Ingin menghapus <b> {{ $data->nama_barang }} </b>?</p>
+                      <p class="text-center">Apakah anda yakin ingin menghapus <b> {{ $data->nama_barang }} </b>?</p>
                     </div>
                     <div class="modal-footer justify-content-between">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
-                      <a href="/stok_hadiah/delete/{{ $data->id }}" class="btn btn-danger">Ya</a>
+                      <a href="/stok_hadiah/delete/{{ $data->id }}" class="btn btn-danger pl-4 pr-4">Ya</a>
                     </div>
                   </div>
                 </div>

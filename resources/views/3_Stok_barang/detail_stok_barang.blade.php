@@ -44,7 +44,7 @@
             <th>{{ $stok->qty }}</th>
         </tr>
         <tr>
-            <th><a href="/stok_barang" class="btn btn-success btn-sm">Kembali</a></th>
+            <th><a href="/stok_barang" class="btn btn-success btn-md">Kembali</a></th>
             <th></th>
             <th></th>
         </tr>

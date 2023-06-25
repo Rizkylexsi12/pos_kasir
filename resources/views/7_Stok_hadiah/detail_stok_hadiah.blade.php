@@ -39,10 +39,9 @@
             <th>{{ $stokHadiah->qty }}</th>
         </tr>
         <tr>
-            <th><a href="/stok_hadiah" class="btn btn-success btn-sm">Kembali</a></th>
+            <th><a href="/stok_hadiah" class="btn btn-success btn-md">Kembali</a></th>
             <th></th>
             <th></th>
         </tr>
-        
     </table>
 @endsection

@@ -42,7 +42,7 @@ class stokBarangController extends Controller
         ],[
             'barcode.required' => 'Wajib diisi!!',
             'nama_barang.required' => 'Wajib diisi!!',
-            'harga_beli' => 'Wajib diisi!!',
+            'harga_beli.required' => 'Wajib diisi!!',
             'harga_barang.required' => 'Wajib diisi!!',
             'qty.required' => 'Wajib diisi!!'
         ]);
@@ -146,7 +146,8 @@ class stokBarangController extends Controller
                 $barcode => [
                     "nama_barang" => $product->nama_barang,
                     "quantity" => 1,
-                    "harga_barang" => $product->harga_barang
+                    "harga_barang" => $product->harga_barang,
+                    "stokbarang" => $product->qty
                     ]
                 ];
     

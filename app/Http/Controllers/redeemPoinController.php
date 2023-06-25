@@ -56,7 +56,8 @@ class redeemPoinController extends Controller
                 $barcode => [
                     "nama_barang" => $product->nama_barang,
                     "quantity" => 1,
-                    "poin" => $product->poin
+                    "poin" => $product->poin,
+                    "stokbarang" => $product->qty
                     ]
                 ];
     
@@ -114,14 +115,14 @@ class redeemPoinController extends Controller
         if(isset($request->nomor_hp)){
             $nomor_hp = $request->nomor_hp;
             $customer = customer::where('no_telp', $nomor_hp)-> first();
-            if($request->poin <= $customer->poin){
+            if($request->poin > $customer->poin){
+                return redirect()->back()->with('error', 'Poin Customer tidak cukup');
+            }else{
                 $customer->poin -= $grandtotal;
                 $customer->save(); 
-            }else{
-                return redirect()->back()->with('error', ' Poin Customer tidak cukup');
             }  
         }else{
-            return redirect()->back()->with('error', ' Nomor Handphone Tidak Boleh Kosong');
+            return redirect()->back()->with('error', 'Nomor Handphone Tidak Boleh Kosong');
         }
 
         $riwayat_redeem = new riwayatRedeem();

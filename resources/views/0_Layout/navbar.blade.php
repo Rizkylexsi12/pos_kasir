@@ -10,7 +10,7 @@
     </li>
     <li class="nav-item">
       <a href="/riwayat_penjualan" class="nav-link">
-        <i class="nav-icon far fa-list-alt"></i>
+        <i class="nav-icon fas fa-list-alt"></i>
         <p>Riwayat Penjualan</p>
       </a>
     </li>
@@ -22,7 +22,7 @@
     </li>
     <li class="nav-item">
       <a class="nav-link customer">
-        <i class="nav-icon far fa-smile-beam"></i>
+        <i class="nav-icon fas fa-smile-beam"></i>
         <p>Data Customer</p>
       </a>
     </li>
@@ -34,13 +34,13 @@
     </li>
     <li class="nav-item">
       <a href="/riwayat_redeem" class="nav-link">
-        <i class="nav-icon fas fa-gift"></i>
+        <i class="nav-icon fas fa-list"></i>
         <p>Riwayat Redeem</p>
       </a>
     </li>
     <li class="nav-item">
       <a href="/stok_hadiah" class="nav-link">
-        <i class="nav-icon fas fa-gift"></i>
+        <i class="nav-icon fas fa-heart"></i>
         <p>Stok Hadiah</p>
       </a>
     </li>

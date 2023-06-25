@@ -18,15 +18,16 @@
 
 @section('content')
 <div class="row mb-2">
-    <form action="/riwayat_penjualan/cari" method="GET" class="pl-2 col-sm-8">
+    <form action="/riwayat_penjualan/cari" method="GET" class="pl-2 col-sm-8 mt-3">
       <input type="text" name="cari" placeholder="Cari Customer" value="{{ !empty($cari) ? $cari : '' }}">
-      <input type="submit" value="Search">
+      <input type="submit" value="Search" class="ml-2">
     </form>
-    <form action="{{ route('filterDate') }}" method="GET" class="pl-2 col-sm-4">
+    <form action="{{ route('filterDate') }}" method="GET" class="pl-2 col-sm-4 mt-3">
         <input type="date" id="start_date" name="start_date" value="{{ !empty($startDate) ? $startDate : ''  }}">
-        <label for="end_date">-</label>
+        <label for="end_date" class="ml-2 mr-2">-</label>
         <input type="date" id="end_date" name="end_date" value="{{ !empty($endDate) ? $endDate : '' }}">
-        <button type="submit">Filter</button>
+        <input type="submit" class="ml-2" value="Filter">
+        {{-- <button type="submit">Filter</button> --}}
     </form>
 </div>
 {{-- <div>
@@ -35,7 +36,7 @@
     @if(isset($message))
       <div class="alert alert-danger">{{ $message }}</div>
     @else
-    <table class="table table-bordered table-striped table-sm table-hover">
+    <table class="table table-bordered table-striped table-sm table-hover mt-3">
         <thead>
             <tr>
                 <th class="text-center">No.</th>
