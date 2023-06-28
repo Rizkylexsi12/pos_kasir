@@ -66,7 +66,7 @@
                     <table class="table table-bordered table-striped table-sm table-hover col-md-10">
                         <thead>
                             <tr>
-                                <th class="text-center">Nama Barang Hadiah</th>
+                                <th class="text-center">Nama Barang</th>
                                 <th class="text-center">Qty</th>
                                 <th class="text-center">Poin</th>
                                 <th class="text-center">Total</th>
@@ -80,7 +80,7 @@
                             <?php $totalqty += $details['quantity'] ?>
                                 <tr>
                                     <td>{{ $details['nama_barang'] }}</td>
-                                    <td width="150" class="text-center"><input type="number" class="col-6 quantity" value="{{ $details['quantity'] }}" name="quantity[{{ $id }}]" min="1" max="{{ $details['stokbarang'] }}"></td>
+                                    <td width="150" class="text-center"><input type="number" class="col-6 quantity" value="{{ $details['quantity'] }}" name="quantity[{{ $id }}]" min="1" max="{{ $details['stokbarang'] }}"+++></td>
                                     <td width="150" class="text-center">{{ number_format($details['poin']) }}</td>
                                     <td width="150" class="text-center">{{ number_format($total) }}</td>
                                     <td class="text-center actions" width="100">
