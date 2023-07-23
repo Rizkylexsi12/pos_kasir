@@ -20,8 +20,7 @@ class riwayatRedeemController extends Controller
         ]);
     }
 
-    public function detail($id_redeem)
-    {
+    public function detail($id_redeem){
         $detailRedeem = DB::table('detail_redeems')->where('id_redeem', $id_redeem)->get();
         $riwayatRedeem = DB::table('riwayat_redeems')->where('id', $id_redeem)->first();
         return view('6_Riwayat_redeem/detail_riwayat_redeem', [

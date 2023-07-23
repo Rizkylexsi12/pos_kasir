@@ -21,7 +21,7 @@ Route::controller(riwayatPenjualanController::class)->group(function() {
 Route::controller(stokBarangController::class)->group(function(){
     Route::get('/stok_barang', [stokBarangController::class, 'index'])->name('stok_barang');
     Route::get('/stok_barang/add', [stokBarangController::class, 'add']);
-    Route::post('/stok_barang/insert', [stokBarangController::class, 'insert']);
+    Route::post('/stok_barang/insert', [stokBarangController::class, 'insert'])->name('create_stock_item');
     Route::get('/stok_barang/detail/{id}', [stokBarangController::class, 'detail']);
     Route::get('/stok_barang/edit/{id}', [stokBarangController::class, 'edit']);
     Route::post('/stok_barang/update/{id}', [stokBarangController::class, 'update']);

@@ -53,7 +53,7 @@
   customerElement.addEventListener('click', function() {
     var namaAnda = prompt('Masukkan password:');
   
-    if (namaAnda === 'lexsi') {
+    if (namaAnda === 'tokosususuhen') {
       window.location.href = '/data_customer';
     } else {
       alert("Anda tidak memiliki akses");

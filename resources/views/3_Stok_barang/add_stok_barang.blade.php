@@ -17,7 +17,7 @@
 @endsection
 
 @section('content')
-    <form action="/stok_barang/insert" method="post" enctype="multipart/form-data">
+    <form action="{{ route('create_stock_item') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="content">
             <div  class="row">

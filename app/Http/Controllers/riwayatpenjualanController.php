@@ -19,8 +19,7 @@ class riwayatpenjualanController extends Controller
         ]);
     }
 
-    public function detail($id_penjualan)
-    {
+    public function detail($id_penjualan){
         $detailPenjualan = DB::table('detail_penjualans')->where('id_penjualan', $id_penjualan)->get();
         $riwayatpenjualan = DB::table('riwayat_penjualans')->where('id', $id_penjualan)->first();
         return view('2_Riwayat_penjualan/detail_penjualan', [
