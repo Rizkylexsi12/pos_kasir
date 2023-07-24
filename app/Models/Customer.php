@@ -5,10 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class customer extends Model
+class Customer extends Model
 {
+    protected $table = 'customers';
+
     public function alldata(){
-        return DB::table('customers')->get();
+        return $this->paginate(10);
+        // return DB::table('customers')->get();
     }
 
     public function addData($data){

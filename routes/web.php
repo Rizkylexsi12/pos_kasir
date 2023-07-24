@@ -1,72 +1,72 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\riwayatPenjualanController;
-use App\Http\Controllers\stokBarangController;
-use App\Http\Controllers\dataCustomerController;
-use App\Http\Controllers\redeemPoinController;
-use App\Http\Controllers\riwayatRedeemController;
-use App\Http\Controllers\stokHadiahController;
+use App\Http\Controllers\RiwayatPenjualanController;
+use App\Http\Controllers\StokBarangController;
+use App\Http\Controllers\DataCustomerController;
+use App\Http\Controllers\RedeemPoinController;
+use App\Http\Controllers\RiwayatRedeemController;
+use App\Http\Controllers\StokHadiahController;
 
 Route::view('/', '1_Input_penjualan/input_penjualan') ->name('input_penjualan');
 // Route::get('/', [stokBarangController::class, 'home']);
 
-Route::controller(riwayatPenjualanController::class)->group(function() {
-    Route::get('/riwayat_penjualan',[riwayatPenjualanController::class, 'index']);
-    Route::get('/riwayat_penjualan/detail/{id_penjualan}', [riwayatPenjualanController::class, 'detail']);
-    Route::get('/riwayat_penjualan/cari', [riwayatPenjualanController::class, 'search']);
-    Route::get('/riwayat_penjualan/filterdate', [riwayatPenjualanController::class, 'filterDate'])->name('filterDate');
+Route::controller(RiwayatPenjualanController::class)->group(function() {
+    Route::get('/riwayat_penjualan',[RiwayatPenjualanController::class, 'index'])->name('riwayat_penjualan.index');
+    Route::get('/riwayat_penjualan/detail/{id_penjualan}', [RiwayatPenjualanController::class, 'detail']);
+    Route::get('/riwayat_penjualan/cari', [RiwayatPenjualanController::class, 'search']);
+    Route::get('/riwayat_penjualan/filterdate', [RiwayatPenjualanController::class, 'filterDate'])->name('filterDate');
 });
 
-Route::controller(stokBarangController::class)->group(function(){
-    Route::get('/stok_barang', [stokBarangController::class, 'index'])->name('stok_barang');
-    Route::get('/stok_barang/add', [stokBarangController::class, 'add']);
-    Route::post('/stok_barang/insert', [stokBarangController::class, 'insert'])->name('create_stock_item');
-    Route::get('/stok_barang/detail/{id}', [stokBarangController::class, 'detail']);
-    Route::get('/stok_barang/edit/{id}', [stokBarangController::class, 'edit']);
-    Route::post('/stok_barang/update/{id}', [stokBarangController::class, 'update']);
-    Route::get('/stok_barang/delete/{id}', [stokBarangController::class, 'delete']);
-    Route::get('/stok_barang/cari', [stokBarangController::class, 'search']);
-    Route::get('/add-to-cart/{barcode}', [stokBarangController::class, 'addToCart']);
-    Route::delete('remove-from-cart', [stokBarangController::class, 'remove']);
-    Route::patch('update-cart', [stokBarangController::class, 'update_cart']);
-    Route::post('/checkout', [stokBarangController::class, 'checkout'])->name('checkout');
+Route::controller(StokBarangController::class)->group(function(){
+    Route::get('/stok_barang', [StokBarangController::class, 'index'])->name('stok_barang.index');
+    Route::get('/stok_barang/create', [StokBarangController::class, 'create'])->name('stok_barang.create');
+    Route::post('/stok_barang/store', [StokBarangController::class, 'store'])->name('stok_barang.store');
+    Route::get('/stok_barang/detail/{id}', [StokBarangController::class, 'detail'])->name('stok_barang.detail');
+    Route::get('/stok_barang/edit/{id}', [StokBarangController::class, 'edit'])->name('stok_barang.edit');
+    Route::post('/stok_barang/update/{id}', [StokBarangController::class, 'update'])->name('stok_barang.update');
+    Route::get('/stok_barang/delete/{id}', [StokBarangController::class, 'delete'])->name('stok_barang.delete');
+    Route::get('/stok_barang/search', [StokBarangController::class, 'search'])->name('stok_barang.search');
+    Route::get('/add-to-cart/{barcode}', [StokBarangController::class, 'addToCart'])->name('addToCart');
+    Route::delete('remove-from-cart', [StokBarangController::class, 'removeFromCart'])->name('removeFromCart');
+    Route::patch('update-cart', [StokBarangController::class, 'update_cart'])->name('updateCart');
+    Route::post('/checkout', [StokBarangController::class, 'checkout'])->name('checkout');
 });
 
-Route::controller(dataCustomerController::class)->group(function(){
-    Route::get('/data_customer', [dataCustomerController::class, 'index'])->name('data_customer');
-    Route::get('/data_customer/add', [dataCustomerController::class, 'add']);
-    Route::post('/data_customer/insert', [dataCustomerController::class, 'insert']);
-    Route::get('/data_customer/detail/{id_customer}', [dataCustomerController::class, 'detail']);
-    Route::get('/data_customer/edit/{id_customer}', [dataCustomerController::class, 'edit']);
-    Route::post('/data_customer/update/{id_customer}', [dataCustomerController::class, 'update']);
-    Route::get('/data_customer/delete/{id_customer}', [dataCustomerController::class, 'delete']);
-    Route::get('/data_customer/cari', [dataCustomerController::class, 'search']);
+Route::controller(DataCustomerController::class)->group(function(){
+    Route::get('/data_customer', [DataCustomerController::class, 'index'])->name('data_customer.index');
+    Route::get('/data_customer/add', [DataCustomerController::class, 'add']);
+    Route::post('/data_customer/insert', [DataCustomerController::class, 'insert']);
+    Route::get('/data_customer/detail/{id_customer}', [DataCustomerController::class, 'detail']);
+    Route::get('/data_customer/edit/{id_customer}', [DataCustomerController::class, 'edit']);
+    Route::post('/data_customer/update/{id_customer}', [DataCustomerController::class, 'update']);
+    Route::get('/data_customer/delete/{id_customer}', [DataCustomerController::class, 'delete']);
+    Route::get('/data_customer/cari', [DataCustomerController::class, 'search']);
 });
 
-Route::controller(redeemPoinController::class)->group(function(){
-    Route::get('/redeem_poin', [redeemPoinController::class, 'index'])->name('redeem_poin');
-    // Route::get('/redeem_poin', [redeemPoinController::class, 'home']);
-    Route::get('/add-to-redeem/{barcode}', [redeemPoinController::class, 'addToCart']);
-    Route::patch('update-cart_hadiah', [redeemPoinController::class, 'update_cart']);
-    Route::delete('remove-from-cart-hadiah', [redeemPoinController::class, 'remove']);
-    Route::post('/checkout_hadiah', [redeemPoinController::class, 'checkout'])->name('checkout_hadiah');
+Route::controller(RedeemPoinController::class)->group(function(){
+    Route::get('/redeem_poin', [RedeemPoinController::class, 'index'])->name('redeem_poin.index');
+    // Route::get('/redeem_poin', [RedeemPoinController::class, 'home']);
+    Route::get('/add-to-redeem/{barcode}', [RedeemPoinController::class, 'addToCart']);
+    Route::patch('update-cart_hadiah', [RedeemPoinController::class, 'update_cart']);
+    Route::delete('remove-from-cart-hadiah', [RedeemPoinController::class, 'remove']);
+    Route::post('/checkout_hadiah', [RedeemPoinController::class, 'checkout'])->name('checkout_hadiah');
 });
 
-Route::controller(stokHadiahController::class)->group(function(){
-    Route::get('/stok_hadiah', [stokHadiahController::class, 'index'])->name('stok_hadiah');
+Route::controller(StokHadiahController::class)->group(function(){
+    Route::get('/stok_hadiah', [StokHadiahController::class, 'index'])->name('stok_hadiah.index');
     Route::view('/stok_hadiah/add', '7_Stok_hadiah/add_stok_hadiah');
-    Route::post('/stok_hadiah/insert', [stokHadiahController::class, 'insert']);
-    Route::get('/stok_hadiah/detail/{id}', [stokHadiahController::class, 'detail']);
-    Route::get('/stok_hadiah/edit/{id}', [stokHadiahController::class, 'edit']);
-    Route::post('/stok_hadiah/update/{id}', [stokHadiahController::class, 'update']);
-    Route::get('/stok_hadiah/delete/{id}', [stokHadiahController::class, 'delete']);
-    Route::get('/stok_hadiah/cari', [stokHadiahController::class, 'search']);
+    Route::post('/stok_hadiah/insert', [StokHadiahController::class, 'insert']);
+    Route::get('/stok_hadiah/detail/{id}', [StokHadiahController::class, 'detail']);
+    Route::get('/stok_hadiah/edit/{id}', [StokHadiahController::class, 'edit']);
+    Route::post('/stok_hadiah/update/{id}', [StokHadiahController::class, 'update']);
+    Route::get('/stok_hadiah/delete/{id}', [StokHadiahController::class, 'delete']);
+    Route::get('/stok_hadiah/cari', [StokHadiahController::class, 'search']);
 });
 
-Route::controller(riwayatRedeemController::class)->group(function() {
-    Route::get('/riwayat_redeem',[riwayatRedeemController::class, 'index']);
-    Route::get('/riwayat_redeem/detail/{id_redeem}', [riwayatRedeemController::class, 'detail']);
-    Route::get('/riwayat_redeem/cari', [riwayatRedeemController::class, 'search']);
-    Route::get('/riwayat_redeem/filterdate', [riwayatRedeemController::class, 'filterDate'])->name('filterDate_redeem');
+Route::controller(RiwayatRedeemController::class)->group(function() {
+    Route::get('/riwayat_redeem',[RiwayatRedeemController::class, 'index'])->name('riwayat_redeem.index');
+    Route::get('/riwayat_redeem/detail/{id_redeem}', [RiwayatRedeemController::class, 'detail']);
+    Route::get('/riwayat_redeem/cari', [RiwayatRedeemController::class, 'search']);
+    Route::get('/riwayat_redeem/filterdate', [RiwayatRedeemController::class, 'filterDate'])->name('filterDate_redeem');
 });

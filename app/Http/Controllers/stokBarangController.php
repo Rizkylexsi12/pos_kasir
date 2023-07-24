@@ -1,20 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\stok;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+
+use App\Models\Stok;
 use App\Models\RiwayatPenjualan;
 use App\Models\DetailPenjualan;
 use App\Models\customer;
-use Illuminate\Support\Facades\Session;
 
 class stokBarangController extends Controller
 {
     protected $stok;
 
     public function __construct(){
-        $this->stok = new stok();
+        $this->stok = new Stok();
     }
 
     public function home(){
@@ -28,35 +29,38 @@ class stokBarangController extends Controller
         ]);
     }
 
-    public function add(){
+    public function create(){
         return view('3_Stok_barang/add_stok_barang');
     }
 
-    public function insert(){
-        Request()->validate([
+    public function store(Request $request){
+        $request->validate([
             'barcode' => 'required',
-            'nama_barang' => 'required|max:255',
+            'nama_barang' => 'required|min:3|max:255',
             'harga_beli' => 'required',
             'harga_barang' => 'required',
             'qty' => 'required',
-        ],[
+        ],
+        [
             'barcode.required' => 'Wajib diisi!!',
             'nama_barang.required' => 'Wajib diisi!!',
+            'nama_barang.min' => 'tes!!',
             'harga_beli.required' => 'Wajib diisi!!',
             'harga_barang.required' => 'Wajib diisi!!',
             'qty.required' => 'Wajib diisi!!'
-        ]);
+        ]
+    );
 
         $data = [
-            'barcode' => Request()-> barcode,
-            'nama_barang' => Request()-> nama_barang,
-            'harga_beli' => Request()->harga_beli,
-            'harga_barang' => Request()-> harga_barang,
-            'qty' => Request()-> qty,
+            'barcode' => $request->barcode,
+            'nama_barang' => $request->nama_barang,
+            'harga_beli' => $request->harga_beli,
+            'harga_barang' => $request->harga_barang,
+            'qty' => $request->qty,
         ];
 
         $this->stok->addData($data);
-        return redirect()-> route('stok_barang')-> with('pesan','Data Berhasil ditambahkan!!');
+        return redirect()-> route('stok_barang.index')-> with('pesan','Data Berhasil ditambahkan!!');
     }
 
     public function detail($id){
@@ -107,13 +111,13 @@ class stokBarangController extends Controller
         ];
 
         $this->stok->editData($id, $data);
-        return redirect()-> route('stok_barang')-> with('pesan','Data Berhasil diupdate!!');
+        return redirect()-> route('stok_barang.index')-> with('pesan','Data Berhasil diupdate!!');
     }
 
     public function delete($id){
         $this->stok->deleteData($id);
 
-        return redirect()->route('stok_barang')->with('pesan', 'Data berhasil dihapus');
+        return redirect()->route('stok_barang.index')->with('pesan', 'Data berhasil dihapus');
     }
 
     public function addToCart($barcode){
@@ -172,7 +176,7 @@ class stokBarangController extends Controller
         return session()->put('cart', $cart);
     }
     
-    public function remove(Request $request){
+    public function removeFromCart(Request $request){
         if($request->id) {
             $cart = session()->get('cart');
 

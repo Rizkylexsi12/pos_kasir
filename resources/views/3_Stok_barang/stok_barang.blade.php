@@ -18,15 +18,15 @@
 
 @section('content')
     <div class="row mb-3">
-      <form action="/stok_barang/cari" method="GET" class="pl-2 mt-4">
+      <form action="{{ route('stok_barang.search') }}" method="GET" class="pl-2 mt-4">
         <input type="text" name="cari" placeholder="Cari Barang / Barcode" value="{{ !empty($cari) ? $cari : '' }}">
         <input type="submit" value="Search" class="ml-2">
       </form>
       <div class="ml-auto">
-        <a href="/stok_barang/add" class="btn btn-primary btn-success mt-3 mr-3"> + Add Barang </a>
+        <a href="{{ route('stok_barang.create') }}" class="btn btn-primary btn-success mt-3 mr-3"> + Add Barang </a>
       </div>
     </div>
-    @if (session('pesan'))
+    @if(session('pesan'))
       <div class="alert alert-success alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
           <h4><i class="icon fa fa-check"></i>{{ session('pesan') }}</h4>
@@ -48,10 +48,12 @@
             </tr>
         </thead>
         <tbody>
-          <?php $no=1; ?>
-            @foreach ($stok as $no => $data)
+            @foreach ($stok as $data)
+            @php
+              $loopNumber = ($stok->currentPage() - 1) * $stok->perPage() + $loop->iteration;
+            @endphp
             <tr>
-                <td class="text-center" width="60">{{ ++$no + ($stok->currentPage()-1) * $stok->perPage() }}</td>
+                <td class="text-center" width="60">{{ $loopNumber }}</td>
                 <td class="text-center" width="150">{{ $data->barcode }}</td>
                 <td><a href="/stok_barang/detail/{{ $data-> id }}">{{ $data->nama_barang }}</a></td>
                 <td class="text-center" width="150">Rp{{ number_format($data->harga_beli) }}</td>

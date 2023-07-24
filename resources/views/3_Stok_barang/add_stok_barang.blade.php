@@ -17,14 +17,14 @@
 @endsection
 
 @section('content')
-    <form action="{{ route('create_stock_item') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('stok_barang.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="content">
             <div  class="row">
                 <div class="col-6 mt-3">
                     <div class="form-group">
                         <label>Barcode</label>
-                        <input type="number" name="barcode" class="form-control" value="{{ old('barcode') }}">
+                        <input type="number" name="barcode" class="form-control @error('barcode') is-invalid @enderror" value="{{ old('barcode') }}">
                         <div class="text-danger">
                             @error('barcode')
                                 {{  $message }}
@@ -33,7 +33,7 @@
                     </div>
                     <div class="form-group">
                         <label>Nama Barang</label>
-                        <input type="text" name="nama_barang" class="form-control" value="{{ old('nama_barang') }}">
+                        <input type="text" name="nama_barang" class="form-control @error('barcode') is-invalid @enderror" value="{{ old('nama_barang') }}">
                         <div class="text-danger">
                             @error('nama_barang')
                                 {{  $message }}
@@ -42,7 +42,7 @@
                     </div>
                     <div class="form-group">
                         <label>Harga Beli</label>
-                        <input type="number" name="harga_beli" class="form-control" value="{{ old('harga_beli') }}">
+                        <input type="number" name="harga_beli" class="form-control @error('barcode') is-invalid @enderror" value="{{ old('harga_beli') }}">
                         <div class="text-danger">
                             @error('harga_beli')
                                 {{  $message }}
@@ -51,7 +51,7 @@
                     </div>
                     <div class="form-group">
                         <label>Harga Jual</label>
-                        <input type="number" name="harga_barang" class="form-control" value="{{ old('harga_barang') }}">
+                        <input type="number" name="harga_barang" class="form-control @error('barcode') is-invalid @enderror" value="{{ old('harga_barang') }}">
                         <div class="text-danger">
                             @error('harga_barang')
                                 {{  $message }}
@@ -60,7 +60,7 @@
                     </div>
                     <div class="form-group">
                         <label>QTY</label>
-                        <input type="number" name="qty" class="form-control" value="{{ old('qty') }}">
+                        <input type="number" name="qty" class="form-control @error('barcode') is-invalid @enderror" value="{{ old('qty') }}">
                         <div class="text-danger">
                             @error('qty')
                                 {{  $message }}
@@ -69,7 +69,7 @@
                     </div>
                     <div class="form-group">
                         <button class="btn btn-success btn-md">Simpan</button>
-                        <a href="/stok_barang" class="btn btn-danger btn-md ml-2">Batal</a>
+                        <a href="{{ route('stok_barang.index') }}" class="btn btn-danger btn-md ml-2">Batal</a>
                     </div> 
                 </div>
             </div>

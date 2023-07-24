@@ -1,7 +1,5 @@
 <nav class="mt-2">
   <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-    <!-- Add icons to the links using the .nav-icon class
-         with font-awesome or any other icon font library -->
     <li class="nav-item">
       <a href="/" class="nav-link">
         <i class="nav-icon fas fa-shopping-cart"></i>
@@ -9,13 +7,13 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="/riwayat_penjualan" class="nav-link">
+      <a href="{{ route('riwayat_penjualan.index') }}" class="nav-link">
         <i class="nav-icon fas fa-list-alt"></i>
         <p>Riwayat Penjualan</p>
       </a>
     </li>
     <li class="nav-item">
-      <a href="/stok_barang" class="nav-link">
+      <a href="{{ route('stok_barang.index') }}" class="nav-link">
         <i class="nav-icon fas fa-box-open"></i>
         <p>Stok Barang</p>
       </a>
@@ -27,19 +25,19 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="/redeem_poin" class="nav-link">
+      <a href="{{ route('redeem_poin.index') }}" class="nav-link">
         <i class="nav-icon fas fa-gift"></i>
         <p>Redeem Poin</p>
       </a>
     </li>
     <li class="nav-item">
-      <a href="/riwayat_redeem" class="nav-link">
+      <a href="{{ route('riwayat_redeem.index') }}" class="nav-link">
         <i class="nav-icon fas fa-list"></i>
         <p>Riwayat Redeem</p>
       </a>
     </li>
     <li class="nav-item">
-      <a href="/stok_hadiah" class="nav-link">
+      <a href="{{ route('stok_hadiah.index') }}" class="nav-link">
         <i class="nav-icon fas fa-heart"></i>
         <p>Stok Hadiah</p>
       </a>
@@ -54,7 +52,7 @@
     var namaAnda = prompt('Masukkan password:');
   
     if (namaAnda === 'tokosususuhen') {
-      window.location.href = '/data_customer';
+      window.location.href = '{{ route('data_customer.index') }}';
     } else {
       alert("Anda tidak memiliki akses");
       window.location.href = '/';

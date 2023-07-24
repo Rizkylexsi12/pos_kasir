@@ -2,13 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
-class stok extends Model
+class Stok extends Model
 {
     protected $table = 'stoks';
-    protected $guarded = [];
 
     public function alldata(){
         return $this->paginate(10);
@@ -19,16 +17,14 @@ class stok extends Model
     }
 
     public function deleteData($id){
-        return DB::table('stoks')
-                -> where('id', $id)
-                -> delete();
+        return $this->where('id', $id)->delete();
     }
 
     public function detailData($id){
-        return DB::table('stoks')->where('id', $id)-> first();
+        return $this->where('id', $id)->first();
     }
 
     public function editData($id, $data){
-        return DB::table('stoks')->where('id', $id)->update($data);
+        return $this->where('id', $id)->update($data);
     }
 }
